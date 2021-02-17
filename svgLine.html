@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        
+    </style>
+    <script src="https://stacksnippets.net/scripts/snippet-javascript-console.min.js?v=1"></script>
+<!-- https://stackoverflow.com/questions/31804392/create-svg-arcs-between-two-points/31806074 -->
+</head>
+<body>
+    <input id="count" type="range" min=1 max=9 value=5 oninput=upd() >
+<input id="step" type="range" min=1 max=200 value=100 oninput=upd() >
+<svg viewbox=0,0,300,100 stroke=red fill=none >
+  <circle id=c1 r=10 cx=50 cy=60></circle>
+  <circle id=c2 r=10 cx=250 cy=40></circle>
+  <g id=paths></g>
+</svg>
+    <script type="text/javascript">
+        let r = (d, x) => !x?1e10:0.125*d*d/x + x/2; 
+
+upd();
+
+function upd() {
+  let n = +count.value;
+  let s = +step.value/10;
+  let x1 = c1.getAttribute('cx'), y1 = c1.getAttribute('cy');
+  let x2 = c2.getAttribute('cx'), y2 = c2.getAttribute('cy');
+  let dx = Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+  paths.innerHTML = [...Array(n)].map((_, i) => [
+    n%2&&i===n-1?0:1+parseInt(i/2),
+    i%2
+  ]).map(i => `<path d="${[
+    'M', x1, y1,
+    'A', r(dx, s*i[0]), r(dx, s*i[0]), 0, 0, i[1], x2, y2
+  ].join(' ')}"></path>`).join('');
+}
+    </script>
+</body>
+</html>

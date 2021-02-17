@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+    <h2>oh whaaa!</h2> 
+
+    <svg width="200px" height="200px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+    <circle cx="10" cy="10" r="10" fill="red"/>
+    <circle cx="90" cy="90" r="10" fill="red"/>
+    <circle cx="90" cy="10" r="10" fill="red"/>
+    <circle cx="10" cy="90" r="10" fill="red"/>
+
+     <line id="line" x1="10" y1="10" x2="90" y2="90" stroke="red" />
+  </svg>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script> //https://web-platform-wdhv6r.stackblitz.io/me.html
+    var line = $("line");
+var svg = $("svg");
+
+var isDown = false;
+var startX = 0;
+var startY = 0;
+
+$("circle").on("mousedown", function(event){
+    isDown = true;
+    
+    var pOffset = svg.offset();
+    startX = event.clientX - pOffset.left,
+    startY = event.clientY - pOffset.top;
+  
+})
+
+$("circle").on("mouseup", function(){
+  	isDown = false;
+})
+
+svg.on("mousemove", function(event){
+  if(isDown){
+  
+   var pOffset = svg.offset(),
+            px = event.clientX - pOffset.left,
+            py = event.clientY - pOffset.top;
+  
+  	line.attr("x1",startX)
+    line.attr("x2",px)
+    line.attr("y1",startY)
+    line.attr("y2",py)
+  }
+})
+</script>
+
+
+
+
+  </body>
+</html>
