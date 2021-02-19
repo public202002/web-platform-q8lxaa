@@ -1,0 +1,35 @@
+.rotate { /* https://www.w3schools.com/css/css3_2dtransforms.asp */
+  -ms-transform: rotate(10deg); /* IE 9 */
+  transform: rotate(10deg); /* Standard syntax */
+}
+.rcorners0 {
+  border-radius: 25px;
+  background: #73AD21;
+  padding: 10px; 
+}.rcorners1 {
+  border-radius: 25px;
+  background: #73AD21;
+  padding: 20px; 
+  width: 200px;
+  height: 150px;  
+}
+
+.rcorners2 {
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px; 
+  width: 200px;
+  height: 150px;  
+}
+
+.rcorners3 {
+  border-radius: 25px;
+  background: url(paper.gif);
+  background-position: left top;
+  background-repeat: repeat;
+  padding: 20px; 
+  width: 200px;
+  height: 150px;  
+}
+
+
